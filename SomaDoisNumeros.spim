@@ -1,0 +1,21 @@
+.data
+
+.text
+
+main:
+    li $v0, 5    #Leitura de inteiro
+    syscall
+    move $t0, $v0    #Salvando o numero lido
+
+    li $v0, 5      #Leitura de inteiro
+    syscall
+    move $t1, $v0     #Salvando o numero lido
+
+    add $t3 , $t0, $t1    #Adição $t0=$t0+$t1
+
+    li $v0, 1    #comando do print
+    move $a0, $t3   #Falar a variavel que vai printar
+    syscall
+
+    li $v0,10
+    syscall

@@ -1,0 +1,54 @@
+.data
+    nota0: .asciiz "E \n"
+    nota1: .asciiz "D \n"
+    nota2: .asciiz "C \n"
+    nota3: .asciiz "B \n"
+    nota4: .asciiz "A \n"
+.text
+
+main:
+
+    li $v0, 5   #Ler inteiro
+    syscall
+    move $t0, $v0   #Salvando inteiro
+
+    beq $t0, $zero, notaE    #Se numero é igual a 0
+    ble $t0, 35 , notaD      #Se numero é menor que 35
+    ble $t0, 60, notaC       #Se numero é menor que 60
+    ble $t0, 85, notaB       #Se numero é menor que 85
+    ble $t0, 100, notaA      #Se numero é menor que 100
+
+    notaA:
+    li $v0,4 
+    la $a0, nota4   #Printando o que conter no nota4
+    syscall  
+    j exit
+
+    notaB:
+    li $v0,4
+    la $a0, nota3
+    syscall  
+    j exit
+
+    notaC:
+    li $v0,4
+    la $a0, nota2
+    syscall  
+    j exit
+
+
+    notaD:
+    li $v0,4
+    la $a0, nota1
+    syscall  
+    j exit
+
+    notaE:
+    li $v0,4
+    la $a0, nota0
+    syscall  
+    j exit
+
+    exit:
+    li $v0,10
+    syscall
