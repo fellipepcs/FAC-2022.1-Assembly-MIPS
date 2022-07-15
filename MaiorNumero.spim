@@ -8,8 +8,11 @@ main:
     syscall
     move $t0, $v0    #Salvando o numero lido
 
-    add $s3,$zero,$zero    # $s3 = 0 para inicializar o maior numero
-    add $s1,$zero,$zero    #  $s1 = 0   Contador
+    li $v0, 5
+	syscall  	
+    move $s3, $v0
+
+    add $s1,$s1,1    #  $s1 = 0   Contador
 
 loop: slt $t1,$s1,$t0      # Se $t0 == $s1  return zero
       beq $t1, $zero, exit   # Se t1 == 0 ele termina o laço
@@ -17,6 +20,7 @@ loop: slt $t1,$s1,$t0      # Se $t0 == $s1  return zero
       li $v0, 5    #Leitura de inteiro
       syscall
       move $t2, $v0    #Salvando o numero lido
+
       addi $s1, $s1, 1       # contador i++
       blt $s3, $t2, maiorNum     # Se s3 for menor que t2 desce para outra label.
       jal loop
